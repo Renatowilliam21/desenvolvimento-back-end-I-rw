@@ -15,3 +15,13 @@ exports.tela_principal = async function(req, res){
     // renderiza o arquivo index.hbs, dentro da pasta view
     res.render('index', contexto);
 }
+
+exports.sobre = async function(req, res){
+    contexto = {
+        titulo_pagina: "Sobre o Catálogo",
+        menu_sobre: true,
+    }
+
+    // renderiza o arquivo na dentro da pasta view
+    res.render('sobre', contexto);
+}
