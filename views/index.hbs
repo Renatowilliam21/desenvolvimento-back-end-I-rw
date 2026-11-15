@@ -1,5 +1,12 @@
 <h1 class="mb-3">Oficinas cadastradas</h1>
 
+<p class="mb-3">
+    Total de oficinas: <b>{{resumo.total}}</b>
+    &nbsp; Abertas: <b>{{resumo.abertas}}</b>
+    &nbsp; Encerradas: <b>{{resumo.encerradas}}</b>
+    &nbsp; Carga horária das abertas: <b>{{resumo.carga_abertas}} h</b>
+</p>
+
 {{#if catalogo_vazio}}
     <p>Nenhuma oficina cadastrada.</p>
     <a class="btn btn-primary" href="/oficina/cria">Cadastrar a primeira oficina</a>
