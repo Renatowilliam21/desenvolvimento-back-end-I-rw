@@ -3,15 +3,18 @@ const oficinas = require('../model/oficinaMemoria.js')
 
 // calcula os indicadores a partir de todas as oficinas em memória
 function calcula_resumo(lista){
-    var abertas = lista.filter(o => o.aberta)
+    var qtd_abertas = 0
     var soma_carga = 0
-    for (var o of abertas) {
-        soma_carga = soma_carga + o.carga_horaria
+    for (var o of lista) {
+        if (o.aberta) {
+            qtd_abertas = qtd_abertas + 1
+            soma_carga = soma_carga + o.carga_horaria
+        }
     }
     return {
         total: lista.length,
-        abertas: abertas.length,
-        encerradas: lista.length - abertas.length,
+        abertas: qtd_abertas,
+        encerradas: lista.length - qtd_abertas,
         carga_abertas: soma_carga,
     }
 }
@@ -21,7 +24,10 @@ async function monta_contexto(somente_abertas){
     const lista = await oficinas.lista()
     var exibidas = lista
     if (somente_abertas) {
-        exibidas = lista.filter(o => o.aberta)
+        exibidas = []
+        for (var o of lista) {
+            if (o.aberta) exibidas.push(o)
+        }
     }
 
     return {
