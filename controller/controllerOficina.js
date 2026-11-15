@@ -46,3 +46,39 @@ exports.consulta = async function(req, res){
     // renderiza o arquivo dentro da pasta view
     res.render('consultaOficina', contexto);
 }
+
+// função responsável pela exibição do formulário de edição
+exports.altera_get = async function(req, res){
+    //informação passada como parâmetro na url
+    var id = req.params.id_oficina
+    var oficina = await oficinas.consulta(id);
+
+    contexto = {
+        titulo_pagina: "Editar Oficina",
+        id: oficina.id,
+        titulo: oficina.titulo,
+        responsavel: oficina.responsavel,
+        descricao: oficina.descricao,
+        carga_horaria: oficina.carga_horaria,
+    }
+
+    // renderiza o arquivo dentro da pasta view
+    res.render('alteraOficina', contexto);
+}
+
+// função responsável por receber os dados do formulário de edição
+exports.altera_post = async function(req, res){
+    //informação passada como parâmetro na url
+    var id = req.params.id_oficina
+    // obtém as informações do formulário
+    var titulo = req.body.titulo
+    var responsavel = req.body.responsavel
+    var descricao = req.body.descricao
+    var carga_horaria = parseInt(req.body.carga_horaria)
+
+    // atualiza a oficina (o ID e a situação são preservados)
+    await oficinas.atualiza(id, titulo, responsavel, descricao, carga_horaria);
+
+    // redireciona para a página principal
+    res.redirect('/');
+}
