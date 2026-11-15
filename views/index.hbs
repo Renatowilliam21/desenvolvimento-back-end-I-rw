@@ -1,2 +1,27 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 class="mb-3">Oficinas cadastradas</h1>
+
+{{#if catalogo_vazio}}
+    <p>Nenhuma oficina cadastrada.</p>
+    <a class="btn btn-primary" href="/oficina/cria">Cadastrar a primeira oficina</a>
+{{else}}
+    <table class="table table-hover align-middle">
+        <thead class="table-primary text-center">
+            <tr>
+                <th>Título</th>
+                <th>Carga horária</th>
+                <th>Inscrições</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each oficinas}}
+                <tr>
+                    <td><b>{{this.titulo}}</b></td>
+                    <td class="text-center">{{this.carga_horaria}} h</td>
+                    <td class="text-center">{{#if this.aberta}}Abertas{{else}}Encerradas{{/if}}</td>
+                    <td class="text-center"></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/if}}
