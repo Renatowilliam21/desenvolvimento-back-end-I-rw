@@ -82,3 +82,19 @@ exports.altera_post = async function(req, res){
     // redireciona para a página principal
     res.redirect('/');
 }
+
+// função responsável por encerrar as inscrições de uma oficina
+exports.encerra = async function(req, res){
+    var id = req.params.id_oficina
+    // atualiza somente a situação da oficina
+    await oficinas.atualizaSituacao(id, false);
+    res.redirect('/');
+}
+
+// função responsável por reabrir as inscrições de uma oficina
+exports.reabre = async function(req, res){
+    var id = req.params.id_oficina
+    // atualiza somente a situação da oficina
+    await oficinas.atualizaSituacao(id, true);
+    res.redirect('/');
+}

@@ -17,4 +17,10 @@ router.get('/altera/:id_oficina', controllerOficina.altera_get);
 /* POST Altera Oficina. */
 router.post('/altera/:id_oficina', controllerOficina.altera_post);
 
+/* GET Encerra inscrições. */
+router.get('/encerra/:id_oficina', controllerOficina.encerra);
+
+/* GET Reabre inscrições. */
+router.get('/reabre/:id_oficina', controllerOficina.reabre);
+
 module.exports = router;
