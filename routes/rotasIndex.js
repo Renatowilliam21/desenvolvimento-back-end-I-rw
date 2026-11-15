@@ -8,4 +8,7 @@ router.get('/', controllerIndex.tela_principal);
 /* GET página sobre */
 router.get('/sobre', controllerIndex.sobre);
 
+/* GET oficinas com inscrições abertas. */
+router.get('/abertas', controllerIndex.abertas);
+
 module.exports = router;

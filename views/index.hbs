@@ -7,9 +7,20 @@
     &nbsp; Carga horária das abertas: <b>{{resumo.carga_abertas}} h</b>
 </p>
 
+<ul class="nav nav-pills mb-3">
+    <li class="nav-item">
+        <a class="nav-link {{#unless somente_abertas}}active{{/unless}}" href="/">Todas as Oficinas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{#if somente_abertas}}active{{/if}}" href="/abertas">Inscrições Abertas</a>
+    </li>
+</ul>
+
 {{#if catalogo_vazio}}
     <p>Nenhuma oficina cadastrada.</p>
     <a class="btn btn-primary" href="/oficina/cria">Cadastrar a primeira oficina</a>
+{{else if sem_abertas}}
+    <p>Nenhuma oficina está com inscrições abertas</p>
 {{else}}
     <table class="table table-hover align-middle">
         <thead class="table-primary text-center">

@@ -16,19 +16,39 @@ function calcula_resumo(lista){
     }
 }
 
-// cria e já exporta a função que será responsável pela tela principal
-exports.tela_principal = async function(req, res){
+// monta o contexto da tela principal, com todas as oficinas ou somente as abertas
+async function monta_contexto(somente_abertas){
     const lista = await oficinas.lista()
-
-    contexto = {
-        titulo_pagina: "Catálogo de Oficinas",
-        menu_inicio: true,
-        resumo: calcula_resumo(lista),
-        oficinas: lista,
-        catalogo_vazio: lista.length == 0,
+    var exibidas = lista
+    if (somente_abertas) {
+        exibidas = lista.filter(o => o.aberta)
     }
 
+    return {
+        titulo_pagina: "Catálogo de Oficinas",
+        menu_inicio: true,
+        // o resumo sempre considera o catálogo completo
+        resumo: calcula_resumo(lista),
+        oficinas: exibidas,
+        somente_abertas: somente_abertas,
+        catalogo_vazio: lista.length == 0,
+        sem_abertas: lista.length > 0 && exibidas.length == 0,
+    }
+}
+
+// cria e já exporta a função que será responsável pela tela principal
+exports.tela_principal = async function(req, res){
+    contexto = await monta_contexto(false)
+
     // renderiza o arquivo index.hbs, dentro da pasta view
+    res.render('index', contexto);
+}
+
+// função responsável pela visualização das oficinas com inscrições abertas
+exports.abertas = async function(req, res){
+    contexto = await monta_contexto(true)
+
+    // reutiliza o mesmo arquivo index.hbs
     res.render('index', contexto);
 }
 
