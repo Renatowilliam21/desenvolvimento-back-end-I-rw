@@ -21,6 +21,12 @@
                     <td class="text-center">{{#if this.aberta}}Abertas{{else}}Encerradas{{/if}}</td>
                     <td class="text-center">
                         <a class="btn btn-primary btn-sm" href="/oficina/consulta/{{this.id}}">Consultar</a>
+                        <a class="btn btn-primary btn-sm" href="/oficina/altera/{{this.id}}">Editar</a>
+                        {{#if this.aberta}}
+                            <a class="btn btn-outline-primary btn-sm" href="/oficina/encerra/{{this.id}}">Encerrar</a>
+                        {{else}}
+                            <a class="btn btn-outline-primary btn-sm" href="/oficina/reabre/{{this.id}}">Reabrir</a>
+                        {{/if}}
                     </td>
                 </tr>
             {{/each}}
