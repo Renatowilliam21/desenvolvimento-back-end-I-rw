@@ -107,3 +107,38 @@ exports.deleta = async function(req, res){
     // redireciona para a página principal
     res.redirect('/');
 }
+
+// função responsável pela exibição da página de pesquisa (sem pesquisa realizada)
+exports.pesquisa_get = async function(req, res){
+    contexto = {
+        titulo_pagina: "Pesquisa de Oficinas",
+        menu_pesquisa: true,
+        pesquisou: false,
+    }
+
+    res.render('pesquisaOficina', contexto);
+}
+
+// função responsável por receber o termo e exibir o resultado na mesma página
+exports.pesquisa_post = async function(req, res){
+    var termo = req.body.termo
+    var lista = await oficinas.lista()
+
+    // compara os títulos sem distinguir maiúsculas de minúsculas
+    var encontradas = []
+    for (var o of lista) {
+        if (o.titulo.toLowerCase().includes(termo.toLowerCase())) {
+            encontradas.push(o)
+        }
+    }
+
+    contexto = {
+        titulo_pagina: "Pesquisa de Oficinas",
+        menu_pesquisa: true,
+        pesquisou: true,
+        termo: termo,
+        encontradas: encontradas,
+    }
+
+    res.render('pesquisaOficina', contexto);
+}

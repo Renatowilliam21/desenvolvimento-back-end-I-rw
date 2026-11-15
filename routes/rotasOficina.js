@@ -26,4 +26,10 @@ router.get('/reabre/:id_oficina', controllerOficina.reabre);
 /* GET Exclui Oficina. */
 router.get('/deleta/:id_oficina', controllerOficina.deleta);
 
+/* GET Pesquisa. */
+router.get('/pesquisa', controllerOficina.pesquisa_get);
+
+/* POST Pesquisa. */
+router.post('/pesquisa', controllerOficina.pesquisa_post);
+
 module.exports = router;
