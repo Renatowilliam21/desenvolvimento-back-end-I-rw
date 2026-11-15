@@ -98,3 +98,12 @@ exports.reabre = async function(req, res){
     await oficinas.atualizaSituacao(id, true);
     res.redirect('/');
 }
+
+// função responsável pela exclusão da oficina (a confirmação é feita na janela modal)
+exports.deleta = async function(req, res){
+    //informação passada como parâmetro na url
+    var id = req.params.id_oficina
+    await oficinas.deleta(id);
+    // redireciona para a página principal
+    res.redirect('/');
+}

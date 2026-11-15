@@ -23,4 +23,7 @@ router.get('/encerra/:id_oficina', controllerOficina.encerra);
 /* GET Reabre inscrições. */
 router.get('/reabre/:id_oficina', controllerOficina.reabre);
 
+/* GET Exclui Oficina. */
+router.get('/deleta/:id_oficina', controllerOficina.deleta);
+
 module.exports = router;

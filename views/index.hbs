@@ -22,6 +22,7 @@
                     <td class="text-center">
                         <a class="btn btn-primary btn-sm" href="/oficina/consulta/{{this.id}}">Consultar</a>
                         <a class="btn btn-primary btn-sm" href="/oficina/altera/{{this.id}}">Editar</a>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalExclui{{this.id}}">Excluir</button>
                         {{#if this.aberta}}
                             <a class="btn btn-outline-primary btn-sm" href="/oficina/encerra/{{this.id}}">Encerrar</a>
                         {{else}}
@@ -32,4 +33,24 @@
             {{/each}}
         </tbody>
     </table>
+
+    {{#each oficinas}}
+        <div class="modal fade" id="modalExclui{{this.id}}" tabindex="-1" aria-labelledby="tituloModal{{this.id}}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-6" id="tituloModal{{this.id}}">Excluir oficina</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        Confirma a exclusão de <b>{{this.titulo}}</b>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-danger" href="/oficina/deleta/{{this.id}}">Confirmar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
 {{/if}}
