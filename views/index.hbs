@@ -19,7 +19,9 @@
                     <td><b>{{this.titulo}}</b></td>
                     <td class="text-center">{{this.carga_horaria}} h</td>
                     <td class="text-center">{{#if this.aberta}}Abertas{{else}}Encerradas{{/if}}</td>
-                    <td class="text-center"></td>
+                    <td class="text-center">
+                        <a class="btn btn-primary btn-sm" href="/oficina/consulta/{{this.id}}">Consultar</a>
+                    </td>
                 </tr>
             {{/each}}
         </tbody>

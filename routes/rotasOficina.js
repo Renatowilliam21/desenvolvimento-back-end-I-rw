@@ -8,4 +8,7 @@ router.get('/cria', controllerOficina.cria_get);
 /* POST Cria Oficina. */
 router.post('/cria', controllerOficina.cria_post);
 
+/* GET Consulta Oficina. */
+router.get('/consulta/:id_oficina', controllerOficina.consulta);
+
 module.exports = router;

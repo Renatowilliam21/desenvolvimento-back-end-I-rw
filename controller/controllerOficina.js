@@ -27,3 +27,22 @@ exports.cria_post = async function(req, res){
     // redireciona para a página principal
     res.redirect('/');
 }
+
+// função responsável pela consulta de uma oficina
+exports.consulta = async function(req, res){
+    //informação passada como parâmetro na url
+    var id = req.params.id_oficina
+    var oficina = await oficinas.consulta(id);
+
+    contexto = {
+        titulo_pagina: "Consulta de Oficina",
+        id: oficina.id,
+        titulo: oficina.titulo,
+        responsavel: oficina.responsavel,
+        descricao: oficina.descricao,
+        carga_horaria: oficina.carga_horaria,
+        aberta: oficina.aberta,
+    }
+    // renderiza o arquivo dentro da pasta view
+    res.render('consultaOficina', contexto);
+}
